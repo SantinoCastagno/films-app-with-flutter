@@ -62,4 +62,16 @@ class Pelicula {
     voteAverage       = json['vote_average'] / 1;
     voteCount         = json['vote_count'];
   }
+
+  String getPosterIMG(){
+    if (posterPath == null){
+      return "https://source.unsplash.com/1600x900/?nothing";
+    } else {
+      return "https://image.tmdb.org/t/p/w780/$posterPath";
+    }
+  }
+
+  String getBackdoorIMG(){
+    return "https://image.tmdb.org/t/p/w780/$backdropPath";
+  }
 }

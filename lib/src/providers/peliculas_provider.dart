@@ -7,7 +7,10 @@ class PeliculasProvider {
   String _url = 'api.themoviedb.org';
   String _language = 'es-ES';
 
+  //Método que retorna de manera asincrónica una lista de peliculas 
   Future<List<Pelicula>> getEnCines() async {
+
+    //
     final url = Uri.https(
       _url,
       '3/movie/now_playing',
@@ -18,9 +21,8 @@ class PeliculasProvider {
 
     final response = await http.get( url );
     final decodedData = json.decode(response.body);
-
     final Peliculas peliculasObtenidas = new Peliculas.fromJsonList(decodedData['results']);
-    // print(peliculasObtenidas.items[0].title);
-    // print(peliculasObtenidas.items[0].overview);
+
+    return peliculasObtenidas.items;
   }
 }

@@ -3,14 +3,14 @@ import 'package:films/src/widgets/card_swiper_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  final peliculasProvider = new PeliculasProvider();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Peliculas en cines"),
+          title: Text("Peliculas de actualidad"),
           backgroundColor: Colors.pink,
           centerTitle: false,
           actions: [
@@ -29,11 +29,22 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperTarjetas() {
-    final peliculasProvider = new PeliculasProvider();
-    peliculasProvider.getEnCines();
-
-    return CardSwiper(
-      elementos: [1, 2, 3, 4],
-    );
+    return FutureBuilder(
+        future: peliculasProvider.getEnCines(),
+        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+          if (snapshot.hasData) {
+            return CardSwiper(elementos: snapshot.data);
+          } else {
+            return Container(
+              height: 400.0,
+              child: Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 6,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.pink),
+                ),
+              ),
+            );
+          }
+        });
   }
 }

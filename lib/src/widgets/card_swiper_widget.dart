@@ -1,9 +1,10 @@
+import 'package:films/src/models/pelicula_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class CardSwiper extends StatelessWidget {
-  final List elementos;
-  const CardSwiper({@required this.elementos});
+  final List<Pelicula> elementos;
+  CardSwiper({@required this.elementos});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,10 @@ class CardSwiper extends StatelessWidget {
         itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
-            child: Image.network(
-              "https://source.unsplash.com/collection/190727/1920x1080",
-              fit: BoxFit.fill,
-            ),
+            child: FadeInImage(
+                placeholder: AssetImage('assets/img/no-image.jpg'),
+                image: NetworkImage(elementos[index].getPosterIMG()),
+                fit: BoxFit.cover,),
             borderRadius: BorderRadius.circular(20),
           );
         },
