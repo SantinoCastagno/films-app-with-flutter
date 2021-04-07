@@ -19,8 +19,10 @@ class HomePage extends StatelessWidget {
         ),
         body: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _swiperTarjetas(),
+              _footer(context),
             ],
           ),
         ),
@@ -46,5 +48,34 @@ class HomePage extends StatelessWidget {
             );
           }
         });
+  }
+
+  Widget _footer(BuildContext context) {
+    print("Output SC: ");
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: [
+          FutureBuilder(
+              future: peliculasProvider.getPopulares(),
+              builder: (BuildContext context, AsyncSnapshot<List> snapshot){
+                if (snapshot.hasData){
+                  return Text("Pelicula mas popular:\""+snapshot.data[1].title+"\"");
+                } else {
+                  return Container(
+              height: 400.0,
+              child: Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 6,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.pink),
+                ),
+              ),
+            );
+                }
+              })
+
+        ],
+      ),
+    );
   }
 }
