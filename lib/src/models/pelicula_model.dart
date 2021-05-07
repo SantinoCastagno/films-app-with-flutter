@@ -1,9 +1,9 @@
 class Peliculas {
-  List<Pelicula> items = new List();
+  List<Pelicula> items = [];
 
   Peliculas();
 
-  Peliculas.fromJsonList( List<dynamic> jsonList ){
+  Peliculas.fromJsonList(List<dynamic> jsonList) {
     if (jsonList == null) return;
     for (var item in jsonList) {
       final pelicula = new Pelicula.fromJsonMap(item);
@@ -11,7 +11,6 @@ class Peliculas {
     }
   }
 }
-
 
 class Pelicula {
   bool adult;
@@ -46,32 +45,32 @@ class Pelicula {
     this.voteCount,
   });
 
-  Pelicula.fromJsonMap( Map<String,dynamic> json ){
-    adult             = json['adult'];
-    backdropPath      = json['backdrop_path'];
-    genreIds          = json['genre_ids'].cast<int>();
-    id                = json['id'];
-    originalLanguage  = json['original_language'];
-    originalTitle     = json['original_title'];
-    overview          = json['overview'];
-    popularity        = json['popularity'] / 1;
-    posterPath        = json['poster_path'];
-    releaseDate       = json['release_date'];
-    title             = json['title'];
-    video             = json['video'];
-    voteAverage       = json['vote_average'] / 1;
-    voteCount         = json['vote_count'];
+  Pelicula.fromJsonMap(Map<String, dynamic> json) {
+    adult = json['adult'];
+    backdropPath = json['backdrop_path'];
+    genreIds = json['genre_ids'].cast<int>();
+    id = json['id'];
+    originalLanguage = json['original_language'];
+    originalTitle = json['original_title'];
+    overview = json['overview'];
+    popularity = json['popularity'] / 1;
+    posterPath = json['poster_path'];
+    releaseDate = json['release_date'];
+    title = json['title'];
+    video = json['video'];
+    voteAverage = json['vote_average'] / 1;
+    voteCount = json['vote_count'];
   }
 
-  String getPosterIMG(){
-    if (posterPath == null){
+  String getPosterIMG() {
+    if (posterPath == null) {
       return "https://source.unsplash.com/1600x900/?nothing";
     } else {
       return "https://image.tmdb.org/t/p/w780/$posterPath";
     }
   }
 
-  String getBackdoorIMG(){
+  String getBackdoorIMG() {
     return "https://image.tmdb.org/t/p/w780/$backdropPath";
   }
 }

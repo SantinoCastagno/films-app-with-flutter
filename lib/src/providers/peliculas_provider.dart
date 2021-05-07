@@ -5,7 +5,6 @@ import 'package:films/src/models/pelicula_model.dart';
 class PeliculasProvider {
   String _apikey = '1b566f4fbc893e9ecd9b942ca1a5579a';
   String _url = 'api.themoviedb.org';
-  String _language = 'es-ES';
 
   //Método que retorna de manera asincrónica una lista con las peliculas que se encuentran en cines.
   Future<List<Pelicula>> getEnCines() async {
@@ -17,9 +16,10 @@ class PeliculasProvider {
       },
     );
 
-    final response = await http.get( url );
+    final response = await http.get(url);
     final decodedData = json.decode(response.body);
-    final Peliculas peliculasEnCines = new Peliculas.fromJsonList(decodedData['results']);
+    final Peliculas peliculasEnCines =
+        new Peliculas.fromJsonList(decodedData['results']);
 
     return peliculasEnCines.items;
   }
@@ -34,9 +34,10 @@ class PeliculasProvider {
       },
     );
 
-    final response = await http.get( url );
+    final response = await http.get(url);
     final decodedData = json.decode(response.body);
-    final Peliculas peliculasPopulares = new Peliculas.fromJsonList(decodedData['results']);
+    final Peliculas peliculasPopulares =
+        new Peliculas.fromJsonList(decodedData['results']);
 
     return peliculasPopulares.items;
   }
