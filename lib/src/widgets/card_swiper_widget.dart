@@ -25,7 +25,7 @@ class CardSwiper extends StatelessWidget {
               image: NetworkImage(elementos[index].getPosterIMG()),
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(5),
           );
         },
         itemCount: elementos.length,

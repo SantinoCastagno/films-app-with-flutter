@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
             return CardSwiper(elementos: snapshot.data);
           } else {
             return Container(
-              height: 200.0,
+              height: 200,
               child: Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 6,
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 }
-              })
+              }),
         ],
       ),
     );
