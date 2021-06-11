@@ -3,18 +3,30 @@ import 'package:flutter/material.dart';
 
 class MovieHorizontal extends StatelessWidget {
   final List<Pelicula> peliculas;
+  final PageController _pageController =
+      new PageController(initialPage: 1, viewportFraction: 0.3);
+  final Function agregarPeliculas;
 
-  MovieHorizontal({@required this.peliculas});
+  MovieHorizontal({@required this.peliculas, @required this.agregarPeliculas});
 
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
+
+    //Evento que estara "escuchando" lo que hace el pageController
+    _pageController.addListener(() {
+      if (_pageController.position.pixels >=
+          _pageController.position.maxScrollExtent - 20) {
+        agregarPeliculas();
+      }
+    });
+
     return Container(
       height: _screenSize.height * 0.3,
       child: PageView(
         pageSnapping: false,
         children: _tarjetas(context),
-        controller: PageController(initialPage: 1, viewportFraction: 0.3),
+        controller: _pageController,
       ),
     );
   }
@@ -38,10 +50,7 @@ class MovieHorizontal extends StatelessWidget {
             Text(
               pelicula.title,
               overflow: TextOverflow.ellipsis,
-              //manera directa de cambiar el estilo de la fuente
-              // style: TextStyle(
-              //   fontSize: 12,
-              // ),
+              //manera directa de cambiar el estilo de la fuente:  style: TextStyle(fontSize: 12,),
 
               style: Theme.of(context).textTheme.caption,
               //utilizar un tema del contexto para cambiar el estilo de la fuente

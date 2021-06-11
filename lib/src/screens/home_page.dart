@@ -8,6 +8,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    peliculasProvider.getPopulares();
+
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -56,11 +58,15 @@ class HomePage extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          FutureBuilder(
-              future: peliculasProvider.getPopulares(),
+          StreamBuilder(
+              stream: peliculasProvider.popularesStream,
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                 if (snapshot.hasData) {
-                  return MovieHorizontal(peliculas: snapshot.data);
+                  return MovieHorizontal(
+                      peliculas: snapshot.data,
+                      //Se esta pasando una referencia al metodo getPopulares
+                      //Por esa no lleva los parentesis colocados, ya que no es necesario ejecutarlo
+                      agregarPeliculas: peliculasProvider.getPopulares);
                 } else {
                   return Container(
                     height: 200.0,
