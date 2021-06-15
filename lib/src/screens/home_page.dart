@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                   return MovieHorizontal(
                       peliculas: snapshot.data,
                       //Se esta pasando una referencia al metodo getPopulares
-                      //Por esa no lleva los parentesis colocados, ya que no es necesario ejecutarlo
+                      //Por esa razón no lleva los parentesis colocados, ya que no es necesario ejecutarlo
                       agregarPeliculas: peliculasProvider.getPopulares);
                 } else {
                   return Container(
