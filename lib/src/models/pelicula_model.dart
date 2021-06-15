@@ -70,7 +70,11 @@ class Pelicula {
     }
   }
 
-  String getBackdoorIMG() {
-    return "https://image.tmdb.org/t/p/w780/$backdropPath";
+  String getBackgroundIMG() {
+    if (backdropPath == null) {
+      return "https://source.unsplash.com/1600x900/?nothing";
+    } else {
+      return "https://image.tmdb.org/t/p/w780/$backdropPath";
+    }
   }
 }

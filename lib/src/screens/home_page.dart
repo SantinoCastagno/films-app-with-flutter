@@ -13,12 +13,11 @@ class HomePage extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Peliculas Nuevas"),
-          backgroundColor: Colors.pink,
+          titleSpacing: 30,
+          title: Text("Updated movies"),
+          backgroundColor: Colors.grey[500],
           centerTitle: false,
-          actions: [
-            IconButton(icon: Icon(Icons.airplanemode_on), onPressed: () {})
-          ],
+          actions: [IconButton(icon: Icon(Icons.play_arrow), onPressed: () {})],
         ),
         body: Container(
           child: Column(
