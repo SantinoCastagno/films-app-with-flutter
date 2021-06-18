@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:films/src/screens/pelicula_detail.dart';
 import 'package:films/src/screens/home_page.dart';
 
-void main() => runApp(MyApp());
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+void main() async {
+  await dotenv.load(fileName: ".env");
+  return runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

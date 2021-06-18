@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:films/src/models/pelicula_model.dart';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class PeliculasProvider {
-  String _apikey = '1b566f4fbc893e9ecd9b942ca1a5579a';
+  String _apikey = dotenv.env['api_key'];
   String _url = 'api.themoviedb.org';
   int _popularPage = 0;
   List<Pelicula> _populares = new List();
