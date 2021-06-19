@@ -16,10 +16,10 @@ class PeliculaDetail extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(
-                  height: 10,
-                ),
                 _crearPosterTitulo(context, _pelicula),
+                _descripcion(context, _pelicula),
+                _descripcion(context, _pelicula),
+                _descripcion(context, _pelicula),
               ],
             ),
           ),
@@ -66,21 +66,39 @@ class PeliculaDetail extends StatelessWidget {
             image: NetworkImage(
               _pelicula.getPosterIMG(),
             ),
-            height: 200,
+            height: 150,
             fit: BoxFit.fitHeight,
           ),
           Flexible(
             child: Center(
-              child: Column(children: [
-                Text('VOTE AVERAGE: ' + _pelicula.voteAverage.toString(),
-                    style: Theme.of(context).textTheme.headline5),
-                Text('VOTE COUNT: ' + _pelicula.voteCount.toString(),
-                    style: Theme.of(context).textTheme.headline6)
-              ]),
+              child: Column(
+                children: [
+                  Text(
+                    'VOTE AVERAGE: ' + _pelicula.voteAverage.toString(),
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  Text(
+                    'VOTE COUNT: ' + _pelicula.voteCount.toString(),
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+Widget _descripcion(BuildContext context, Pelicula _pelicula) {
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+    child: Text(
+      _pelicula.overview,
+      textAlign: TextAlign.justify,
+      style: Theme.of(context).textTheme.bodyText1,
+    ),
+  );
 }
