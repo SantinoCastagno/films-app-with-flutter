@@ -1,3 +1,5 @@
+import 'package:films/src/models/cast_model.dart';
+import 'package:films/src/providers/peliculas_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:films/src/models/pelicula_model.dart';
 
@@ -18,8 +20,7 @@ class PeliculaDetail extends StatelessWidget {
               [
                 _crearPosterTitulo(context, _pelicula),
                 _descripcion(context, _pelicula),
-                _descripcion(context, _pelicula),
-                _descripcion(context, _pelicula),
+                _casting(context, _pelicula)
               ],
             ),
           ),
@@ -99,6 +100,54 @@ Widget _descripcion(BuildContext context, Pelicula _pelicula) {
       _pelicula.overview,
       textAlign: TextAlign.justify,
       style: Theme.of(context).textTheme.bodyText1,
+    ),
+  );
+}
+
+Widget _casting(BuildContext context, Pelicula _pelicula) {
+  //Es necesario crear una instancia del provider para poder acceder al método de los actores
+  final PeliculasProvider peliculasProv = PeliculasProvider();
+
+  return FutureBuilder(
+    future: peliculasProv.getCast(_pelicula.id.toString()),
+    builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+      if (snapshot.hasData) {
+        return _crearActoresPageView(snapshot.data);
+      } else {
+        return Center(child: CircularProgressIndicator());
+      }
+    },
+  );
+}
+
+Widget _crearActoresPageView(List<Actor> actores) {
+  return SizedBox(
+    height: 250,
+    child: PageView.builder(
+      itemBuilder: (context, i) {
+        return Column(
+          children: [
+            ClipRRect(
+                child: Container(
+                  child: FadeInImage(
+                    image: NetworkImage(actores[i].getImage()),
+                    placeholder: AssetImage('assets/img/no-image.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                ),
+                borderRadius: BorderRadius.circular(20)),
+            Text(actores[i].name),
+            Text(actores[i].character)
+          ],
+        );
+      },
+      pageSnapping: false,
+      controller: PageController(
+        viewportFraction: 0.3,
+        initialPage: 1,
+        keepPage: true,
+      ),
     ),
   );
 }
