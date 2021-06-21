@@ -13,6 +13,8 @@ class Peliculas {
 }
 
 class Pelicula {
+  //Atributo utilizado para poder referenciar desde los hero widgets
+  String heroID;
   bool adult;
   String backdropPath;
   List<int> genreIds;

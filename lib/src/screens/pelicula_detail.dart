@@ -60,15 +60,21 @@ class PeliculaDetail extends StatelessWidget {
 
   Widget _crearPosterTitulo(BuildContext context, Pelicula _pelicula) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Row(
         children: [
-          Image(
-            image: NetworkImage(
-              _pelicula.getPosterIMG(),
+          Hero(
+            tag: _pelicula.heroID,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image(
+                image: NetworkImage(
+                  _pelicula.getPosterIMG(),
+                ),
+                height: 150,
+                fit: BoxFit.fitHeight,
+              ),
             ),
-            height: 150,
-            fit: BoxFit.fitHeight,
           ),
           Flexible(
             child: Center(
@@ -95,7 +101,7 @@ class PeliculaDetail extends StatelessWidget {
 
 Widget _descripcion(BuildContext context, Pelicula _pelicula) {
   return Container(
-    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
     child: Text(
       _pelicula.overview,
       textAlign: TextAlign.justify,
@@ -112,7 +118,7 @@ Widget _casting(BuildContext context, Pelicula _pelicula) {
     future: peliculasProv.getCast(_pelicula.id.toString()),
     builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
       if (snapshot.hasData) {
-        return _crearActoresPageView(snapshot.data);
+        return _crearActoresPageView(context, snapshot.data);
       } else {
         return Center(child: CircularProgressIndicator());
       }
@@ -120,25 +126,36 @@ Widget _casting(BuildContext context, Pelicula _pelicula) {
   );
 }
 
-Widget _crearActoresPageView(List<Actor> actores) {
+Widget _crearActoresPageView(BuildContext context, List<Actor> actores) {
   return SizedBox(
-    height: 250,
+    height: 280,
     child: PageView.builder(
       itemBuilder: (context, i) {
         return Column(
           children: [
-            ClipRRect(
-                child: Container(
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: ClipRRect(
                   child: FadeInImage(
+                    height: 180,
+                    width: 150,
                     image: NetworkImage(actores[i].getImage()),
                     placeholder: AssetImage('assets/img/no-image.jpg'),
                     fit: BoxFit.cover,
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                ),
-                borderRadius: BorderRadius.circular(20)),
-            Text(actores[i].name),
-            Text(actores[i].character)
+                  borderRadius: BorderRadius.circular(20.0)),
+            ),
+            Text(
+              actores[i].name,
+              style: Theme.of(context).textTheme.subtitle1,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10),
+            Text(
+              actores[i].character,
+              style: Theme.of(context).textTheme.overline,
+              textAlign: TextAlign.center,
+            )
           ],
         );
       },

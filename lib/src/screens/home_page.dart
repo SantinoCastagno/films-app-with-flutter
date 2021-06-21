@@ -17,7 +17,13 @@ class HomePage extends StatelessWidget {
           title: Text("Updated movies"),
           backgroundColor: Colors.grey[500],
           centerTitle: false,
-          actions: [IconButton(icon: Icon(Icons.play_arrow), onPressed: () {})],
+          actions: [
+            IconButton(
+                icon: Icon(Icons.search_rounded),
+                onPressed: () {
+                  // showSearch(context: context, delegate: delegate);
+                })
+          ],
         ),
         body: Container(
           child: Column(

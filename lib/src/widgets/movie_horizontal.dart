@@ -27,6 +27,7 @@ class MovieHorizontal extends StatelessWidget {
         pageSnapping: false,
         controller: _pageController,
         itemBuilder: (context, i) {
+          peliculas[i].heroID = peliculas[i].id.toString() + "page";
           return _tarjeta(context, peliculas[i]);
         },
         itemCount: peliculas.length,
@@ -39,13 +40,16 @@ class MovieHorizontal extends StatelessWidget {
       margin: EdgeInsets.only(right: 15.0),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage('assets/img/no-image.jpg'),
-              image: NetworkImage(pelicula.getPosterIMG()),
-              height: 120,
-              fit: BoxFit.fill,
+          Hero(
+            tag: pelicula.heroID,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/img/no-image.jpg'),
+                image: NetworkImage(pelicula.getPosterIMG()),
+                height: 120,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           SizedBox(height: 10),
