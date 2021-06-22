@@ -64,7 +64,7 @@ class ItemsSearch extends SearchDelegate {
                     ),
                     leading: FadeInImage(
                       image: NetworkImage(p.getPosterIMG()),
-                      placeholder: AssetImage('assets/no-image.jpg'),
+                      placeholder: AssetImage('assets/img/no-image.jpg'),
                       fit: BoxFit.contain,
                       width: 50.0,
                     ),

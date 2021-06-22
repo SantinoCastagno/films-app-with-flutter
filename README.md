@@ -1,16 +1,45 @@
-# films
 
-A new Flutter project.
+# Basic Flutter components
 
-## Getting Started
+This project is part of the Flutter course created 
+by Fernando Herrera and has a purpose learn and practice widget of [Flutter](https://flutter.dev/).
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Run Locally
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Clone the project
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+  git clone https://github.com/SantinoCastagno/films-app-with-flutter
+```
+
+Go to the project directory
+
+```bash
+  cd films-app-with-flutter
+```
+
+Install dependencies
+
+```bash
+  flutter pub get
+```
+
+Connect a device and start the app in debug mode
+
+```bash
+  flutter run
+```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_KEY` of [TMDb](https://www.themoviedb.org/)
+
+  
+## Authors
+
+- [@SantinoCastagno](https://github.com/SantinoCastagno)
+
+  
