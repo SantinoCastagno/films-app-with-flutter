@@ -13,13 +13,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Peliculas',
-        initialRoute: '/',
-        routes: {
-          '/': (buildContext) => HomePage(),
-          '/detail': (buildContext) => PeliculaDetail(),
-        });
+    return MaterialApp(title: 'Peliculas', initialRoute: '/', routes: {
+      '/': (buildContext) => HomePage(),
+      '/detail': (buildContext) => PeliculaDetail(),
+    });
   }
 }

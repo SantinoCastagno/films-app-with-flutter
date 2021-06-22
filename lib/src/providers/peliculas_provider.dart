@@ -11,7 +11,7 @@ class PeliculasProvider {
   String _apikey = dotenv.env['api_key'];
   String _url = 'api.themoviedb.org';
   int _popularPage = 0;
-  List<Pelicula> _populares = new List();
+  List<Pelicula> _populares = [];
   bool _cargando = false;
 
   //Creación del stream
@@ -86,5 +86,17 @@ class PeliculasProvider {
     final Peliculas peliculas =
         new Peliculas.fromJsonList(decodedData['results']);
     return peliculas.items;
+  }
+
+  Future<List<Pelicula>> buscarPelicula(String query) {
+    final url = Uri.https(
+      _url,
+      '3/movie/now_playing',
+      {
+        'api_key': _apikey,
+        'query': query,
+      },
+    );
+    return procesarRespuesta(url);
   }
 }

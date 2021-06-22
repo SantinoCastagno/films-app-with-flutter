@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 class Cast {
-  List<Actor> actores = new List();
+  List<Actor> actores = [];
 
   Cast.fromJsonList(List<dynamic> jsonList) {
     if (jsonList != null) {

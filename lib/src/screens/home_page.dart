@@ -1,3 +1,4 @@
+import 'package:films/src/search/search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:films/src/providers/peliculas_provider.dart';
 import 'package:films/src/widgets/card_swiper_widget.dart';
@@ -14,14 +15,14 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           titleSpacing: 30,
-          title: Text("Updated movies"),
+          title: Text("Lastest Movies"),
           backgroundColor: Colors.grey[500],
           centerTitle: false,
           actions: [
             IconButton(
                 icon: Icon(Icons.search_rounded),
                 onPressed: () {
-                  // showSearch(context: context, delegate: delegate);
+                  showSearch(context: context, delegate: ItemsSearch());
                 })
           ],
         ),
