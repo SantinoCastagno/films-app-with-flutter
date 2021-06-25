@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 
+import 'package:http/http.dart' as http;
 import 'package:films/src/models/pelicula_model.dart';
 import 'package:films/src/models/cast_model.dart';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PeliculasProvider {
@@ -89,9 +88,10 @@ class PeliculasProvider {
   }
 
   Future<List<Pelicula>> buscarPelicula(String query) {
+    print('Buscando pelicula:$query');
     final url = Uri.https(
       _url,
-      '3/movie/now_playing',
+      '3/search/movie',
       {
         'api_key': _apikey,
         'query': query,

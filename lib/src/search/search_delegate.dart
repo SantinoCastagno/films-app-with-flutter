@@ -4,7 +4,7 @@ import 'package:films/src/providers/peliculas_provider.dart';
 
 class ItemsSearch extends SearchDelegate {
   final List<String> peliculas = [], peliculasRecientes = [];
-  String seleccion;
+  Pelicula seleccion;
   final PeliculasProvider peliculasProv = new PeliculasProvider();
 
   @override
@@ -37,13 +37,7 @@ class ItemsSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // Resultados de la busqueda que se mostraran
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    //Sugerencias que aparecen
+    // Resultados de la busqueda que se mostrara al apretar el icono
     if (query.isEmpty) {
       return Container();
     } else {
@@ -53,6 +47,9 @@ class ItemsSearch extends SearchDelegate {
             (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
           if (snapshot.hasData) {
             final peliculas = snapshot.data;
+            //Marco la seleccion para construir el resultado
+            seleccion = peliculas[0];
+
             return ListView(
               children: peliculas.map(
                 (p) {
@@ -86,31 +83,47 @@ class ItemsSearch extends SearchDelegate {
       );
     }
   }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    //Sugerencias que aparecen
+
+    if (query.isEmpty) {
+      return Container();
+    } else {
+      return FutureBuilder(
+        future: peliculasProv.buscarPelicula(query),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
+          if (snapshot.hasData) {
+            final peliculas = snapshot.data;
+            //Marco la seleccion para construir el resultado
+            seleccion = peliculas[0];
+            return ListTile(
+              title: Text(
+                seleccion.originalTitle,
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+              tileColor: Colors.grey[300],
+              leading: FadeInImage(
+                image: NetworkImage(seleccion.getPosterIMG()),
+                placeholder: AssetImage('assets/img/no-image.jpg'),
+                fit: BoxFit.contain,
+                width: 50.0,
+              ),
+              onTap: () {
+                close(context, null);
+                seleccion.heroID = '';
+                Navigator.pushNamed(context, '/detail', arguments: seleccion);
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      );
+    }
+  }
 }
-
-//   @override
-//   Widget buildSuggestions(BuildContext context) {
-//     //Si la query esta vacia entonces coloca las peliculas recientes
-//     //Si la query tiene algo escrito, entonces se sugieren las peliculas que empiezan con dicho query
-//     final List<String> listaSugerida = (query.isEmpty)
-//         ? peliculasRecientes
-//         : peliculas
-//             .where((p) => p.toLowerCase().startsWith(query.toLowerCase()))
-//             .toList();
-
-//     return ListView.builder(
-//       itemCount: listaSugerida.length,
-//       itemBuilder: (context, i) {
-//         return ListTile(
-//           leading: Icon(Icons.movie_creation_outlined),
-//           title: Text(listaSugerida[i]),
-//           onTap: () {
-//             seleccion = listaSugerida[i];
-//             //Metodo que permitiria mostrar los resultados si lo necesitaramos (sin desplegar un screen completo)
-//             // showResults(context);
-//           },
-//         );
-//       },
-//     );
-//   }
-// }

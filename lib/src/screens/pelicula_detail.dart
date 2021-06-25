@@ -130,6 +130,7 @@ Widget _crearActoresPageView(BuildContext context, List<Actor> actores) {
   return SizedBox(
     height: 280,
     child: PageView.builder(
+      itemCount: actores.length,
       itemBuilder: (context, i) {
         return Column(
           children: [
