@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(title: 'Peliculas', initialRoute: '/', routes: {
       '/': (buildContext) => HomePage(),
+      //Ruta definida para los datos detallados de una pelicula especifica
       '/detail': (buildContext) => PeliculaDetail(),
     });
   }

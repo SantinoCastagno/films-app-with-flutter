@@ -1,5 +1,5 @@
-import 'package:films/src/models/pelicula_model.dart';
 import 'package:flutter/material.dart';
+import 'package:films/src/models/pelicula_model.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class CardSwiper extends StatelessWidget {
@@ -16,7 +16,7 @@ class CardSwiper extends StatelessWidget {
       ),
       child: Swiper(
         layout: SwiperLayout.STACK,
-        itemWidth: _screenSize.width * 0.5,
+        itemWidth: _screenSize.width * 0.6,
         itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context, int index) {
           elementos[index].heroID = elementos[index].id.toString() + "card";
@@ -27,7 +27,7 @@ class CardSwiper extends StatelessWidget {
                 child: FadeInImage(
                   placeholder: AssetImage('assets/img/no-image.jpg'),
                   image: NetworkImage(elementos[index].getPosterIMG()),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 onTap: () {
                   Navigator.pushNamed(
