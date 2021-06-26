@@ -16,7 +16,7 @@ class CardSwiper extends StatelessWidget {
       ),
       child: Swiper(
         layout: SwiperLayout.STACK,
-        itemWidth: _screenSize.width * 0.6,
+        itemWidth: _screenSize.width * 0.5,
         itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context, int index) {
           elementos[index].heroID = elementos[index].id.toString() + "card";

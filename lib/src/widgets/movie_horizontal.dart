@@ -30,14 +30,14 @@ class MovieHorizontal extends StatelessWidget {
         controller: _pageController,
         itemBuilder: (context, i) {
           peliculas[i].heroID = peliculas[i].id.toString() + "page";
-          return _tarjeta(context, peliculas[i]);
+          return _tarjeta(context, peliculas[i], _screenSize);
         },
         itemCount: peliculas.length,
       ),
     );
   }
 
-  Widget _tarjeta(BuildContext context, Pelicula pelicula) {
+  Widget _tarjeta(BuildContext context, Pelicula pelicula, Size _screenSize) {
     Widget _tarjeta = Container(
       margin: EdgeInsets.symmetric(horizontal: 5.0),
       child: Column(
@@ -49,8 +49,8 @@ class MovieHorizontal extends StatelessWidget {
               child: FadeInImage(
                 placeholder: AssetImage('assets/img/no-image.jpg'),
                 image: NetworkImage(pelicula.getPosterIMG()),
-                width: 100,
-                height: 180,
+                width: _screenSize.height * 0.14,
+                height: _screenSize.height * 0.22,
                 fit: BoxFit.fill,
               ),
             ),

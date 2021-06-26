@@ -26,7 +26,7 @@ class ItemsSearch extends SearchDelegate {
     // Iconos que aparecen al inicio del AppBar
     return IconButton(
       icon: AnimatedIcon(
-        icon: AnimatedIcons.arrow_menu,
+        icon: AnimatedIcons.close_menu,
         progress: transitionAnimation,
       ),
       onPressed: () {
@@ -99,24 +99,28 @@ class ItemsSearch extends SearchDelegate {
             final peliculas = snapshot.data;
             //Marco la seleccion para construir el resultado
             seleccion = peliculas[0];
-            return ListTile(
-              title: Text(
-                seleccion.originalTitle,
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-              tileColor: Colors.grey[300],
-              leading: FadeInImage(
-                image: NetworkImage(seleccion.getPosterIMG()),
-                placeholder: AssetImage('assets/img/no-image.jpg'),
-                fit: BoxFit.contain,
-                width: 50.0,
-              ),
-              onTap: () {
-                close(context, null);
-                seleccion.heroID = '';
-                Navigator.pushNamed(context, '/detail', arguments: seleccion);
-              },
-            );
+            if (seleccion == null) {
+              return Container();
+            } else {
+              return ListTile(
+                title: Text(
+                  seleccion.originalTitle,
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+                tileColor: Colors.grey[300],
+                leading: FadeInImage(
+                  image: NetworkImage(seleccion.getPosterIMG()),
+                  placeholder: AssetImage('assets/img/no-image.jpg'),
+                  fit: BoxFit.contain,
+                  width: 50.0,
+                ),
+                onTap: () {
+                  close(context, null);
+                  seleccion.heroID = '';
+                  Navigator.pushNamed(context, '/detail', arguments: seleccion);
+                },
+              );
+            }
           } else {
             return Center(
               child: CircularProgressIndicator(),
