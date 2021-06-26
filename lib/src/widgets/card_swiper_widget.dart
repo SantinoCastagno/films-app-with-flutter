@@ -14,11 +14,13 @@ class CardSwiper extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         vertical: 10,
       ),
+      //Utilizamos el swiper importado de su paquete
       child: Swiper(
         layout: SwiperLayout.STACK,
         itemWidth: _screenSize.width * 0.5,
         itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context, int index) {
+          //Se define el identificador del hero de cada tarjeta para que sea unico
           elementos[index].heroID = elementos[index].id.toString() + "card";
           return Hero(
             tag: elementos[index].heroID,
@@ -37,12 +39,14 @@ class CardSwiper extends StatelessWidget {
                   );
                 },
               ),
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(10),
             ),
           );
         },
         itemCount: elementos.length,
+        //Se define el autoplay y su delay
         autoplay: true,
+        autoplayDelay: 10000,
       ),
     );
   }

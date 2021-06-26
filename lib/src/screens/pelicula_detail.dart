@@ -12,6 +12,7 @@ class PeliculaDetail extends StatelessWidget {
     final Pelicula _pelicula = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
+      //Se define el CustomScrollView para contener a los elementos de tipo Sliver
       body: CustomScrollView(
         slivers: [
           _crearAppBar(_pelicula),
@@ -126,6 +127,7 @@ Widget _casting(BuildContext context, Pelicula _pelicula) {
   );
 }
 
+//Se define un PageView de actores de manera similar al PageView de las peliculas en el HomePage
 Widget _crearActoresPageView(BuildContext context, List<Actor> actores) {
   return SizedBox(
     height: 280,

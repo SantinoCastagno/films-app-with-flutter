@@ -7,10 +7,9 @@ class ItemsSearch extends SearchDelegate {
   Pelicula seleccion;
   final PeliculasProvider peliculasProv = new PeliculasProvider();
 
+  //Se definen las acciones que seran ejecutables desde el AppBar de la barra de busqueda (colocados en su derecha)
   @override
   List<Widget> buildActions(BuildContext context) {
-    // Acciones que se pueden ejecutar desde el AppBar
-
     return [
       IconButton(
         icon: Icon(Icons.clear),
@@ -21,6 +20,7 @@ class ItemsSearch extends SearchDelegate {
     ];
   }
 
+  //Se definen los iconos Leading que se encuentran a la izquierda del AppBar
   @override
   Widget buildLeading(BuildContext context) {
     // Iconos que aparecen al inicio del AppBar
@@ -84,10 +84,9 @@ class ItemsSearch extends SearchDelegate {
     }
   }
 
+  //Definimos el constructor de sugerencias de peliculas (este metodo se lanzara cada vez que se actualice el query)
   @override
   Widget buildSuggestions(BuildContext context) {
-    //Sugerencias que aparecen
-
     if (query.isEmpty) {
       return Container();
     } else {
