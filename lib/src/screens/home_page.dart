@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _swiperTarjetas(),
               _footer(context),
