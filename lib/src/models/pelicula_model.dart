@@ -1,3 +1,4 @@
+//Se define la clase Pelicula que sera el modelo para dicho tipo de datos
 class Peliculas {
   List<Pelicula> items = [];
 
@@ -13,8 +14,6 @@ class Peliculas {
 }
 
 class Pelicula {
-  //Atributo utilizado para poder referenciar desde los hero widgets
-  String heroID;
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -29,6 +28,8 @@ class Pelicula {
   bool video;
   double voteAverage;
   int voteCount;
+  //Atributo utilizado para poder referenciar desde los hero widgets
+  String heroID;
 
   Pelicula({
     this.adult,

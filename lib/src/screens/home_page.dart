@@ -5,10 +5,12 @@ import 'package:films/src/widgets/card_swiper_widget.dart';
 import 'package:films/src/widgets/movie_horizontal.dart';
 
 class HomePage extends StatelessWidget {
+  //Se define el provider en la HomePage para poder ejecutar el método por primera vez y se pasa como parametro al widget MovieHorizontal
   final peliculasProvider = new PeliculasProvider();
 
   @override
   Widget build(BuildContext context) {
+    //Se ejecuta por primera vez el metodo para tener la primera tanda de peliculas populares
     peliculasProvider.getPopulares();
 
     return Container(

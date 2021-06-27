@@ -18,6 +18,7 @@ class MovieHorizontal extends StatelessWidget {
 
     //Se captura el evento de su posicion en pixeles
     _pageController.addListener(() {
+      //Se realiza una comparacion de su posicion y se agregan mas peliculas
       if (_pageController.position.pixels >=
           _pageController.position.maxScrollExtent - 20) {
         agregarPeliculas();
