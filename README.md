@@ -8,8 +8,7 @@ a purpose learn and practice widgets of [Flutter SDK](https://flutter.dev/). Thi
 
 ## Screenshots
 
-![App Screenshot 1](https://user-images.githubusercontent.com/51938107/123535912-a77d2a80-d6fd-11eb-8492-7774f3a7e7a3.png)
-![App Screenshot 2](https://user-images.githubusercontent.com/51938107/123535918-ab10b180-d6fd-11eb-8fb7-90b182a6c833.png)
+![App Screenshot](https://user-images.githubusercontent.com/51938107/123550054-05cbfc80-d742-11eb-95a6-dc7e64e51a5b.png)
 
   
 ## Run Locally
