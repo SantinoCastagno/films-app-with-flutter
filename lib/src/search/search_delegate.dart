@@ -4,7 +4,7 @@ import 'package:films/src/providers/peliculas_provider.dart';
 
 class ItemsSearch extends SearchDelegate {
   final List<String> peliculas = [], peliculasRecientes = [];
-  Pelicula seleccion;
+  Pelicula peliculaSugerida;
   final PeliculasProvider peliculasProv = new PeliculasProvider();
 
   //Se definen las acciones que seran ejecutables desde el AppBar de la barra de busqueda (colocados en su derecha)
@@ -45,11 +45,8 @@ class ItemsSearch extends SearchDelegate {
         future: peliculasProv.buscarPelicula(query),
         builder:
             (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data.isNotEmpty) {
             final peliculas = snapshot.data;
-            //Marco la seleccion para construir el resultado
-            seleccion = peliculas[0];
-
             return ListView(
               children: peliculas.map(
                 (p) {
@@ -76,7 +73,7 @@ class ItemsSearch extends SearchDelegate {
             );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Text('Not founded results, try another word please'),
             );
           }
         },
@@ -94,30 +91,33 @@ class ItemsSearch extends SearchDelegate {
         future: peliculasProv.buscarPelicula(query),
         builder:
             (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
+          //Se verifica si se obtuvieron datos
           if (snapshot.hasData) {
-            final peliculas = snapshot.data;
-            //Marco la seleccion para construir el resultado
-            seleccion = peliculas[0];
-            if (seleccion == null) {
-              return Container();
-            } else {
+            //Se verifica si los datos no estan vacios
+            if (snapshot.data.isNotEmpty) {
+              peliculaSugerida = snapshot.data[0];
               return ListTile(
                 title: Text(
-                  seleccion.originalTitle,
+                  peliculaSugerida.originalTitle,
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
                 tileColor: Colors.grey[300],
                 leading: FadeInImage(
-                  image: NetworkImage(seleccion.getPosterIMG()),
+                  image: NetworkImage(peliculaSugerida.getPosterIMG()),
                   placeholder: AssetImage('assets/img/no-image.jpg'),
                   fit: BoxFit.contain,
                   width: 50.0,
                 ),
                 onTap: () {
                   close(context, null);
-                  seleccion.heroID = '';
-                  Navigator.pushNamed(context, '/detail', arguments: seleccion);
+                  peliculaSugerida.heroID = '';
+                  Navigator.pushNamed(context, '/detail',
+                      arguments: peliculaSugerida);
                 },
+              );
+            } else {
+              return ListTile(
+                title: Text('Not found suggestions'),
               );
             }
           } else {
