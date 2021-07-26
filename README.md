@@ -2,7 +2,7 @@
 
 # Films app with Flutter
 
-This project is a part of the Flutter course created by Fernando Herrera and its goal is learning and practicing widgets of [Flutter SDK](https://flutter.dev/). This project is a films app.
+This project is a films app and its goal is learning and practicing widgets of [Flutter SDK](https://flutter.dev/).
 
 
 ## Screenshots
