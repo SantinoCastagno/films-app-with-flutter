@@ -164,7 +164,7 @@ Widget _crearActoresPageView(BuildContext context, List<Actor> actores) {
       },
       pageSnapping: false,
       controller: PageController(
-        viewportFraction: 0.3,
+        viewportFraction: 0.4,
         initialPage: 1,
         keepPage: true,
       ),
