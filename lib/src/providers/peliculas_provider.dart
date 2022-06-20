@@ -8,7 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 //
 class PeliculasProvider {
-  String _apikey = dotenv.env['api_key'];
+  String _apikey = dotenv.env['API_KEY'];
   String _url = 'api.themoviedb.org';
   int _popularPage = 0;
   List<Pelicula> _populares = [];
@@ -47,6 +47,7 @@ class PeliculasProvider {
         },
       );
       final _respuestaProcesada = await procesarRespuesta(url);
+      print(_respuestaProcesada);
       _populares.addAll(_respuestaProcesada);
       popularesSink(_populares);
       _cargando = false;
