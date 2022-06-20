@@ -47,6 +47,7 @@ class PeliculasProvider {
         },
       );
       final _respuestaProcesada = await procesarRespuesta(url);
+      print(_respuestaProcesada);
       _populares.addAll(_respuestaProcesada);
       popularesSink(_populares);
       _cargando = false;
